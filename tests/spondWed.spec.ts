@@ -25,7 +25,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     })
 
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
-        test.setTimeout(150_000);
+        test.setTimeout(180_000);
 
         let feb11_event = 'D3B3823AF7B34009B8FD7CA708CC3082';
         let feb12_event = '58EB4E827752489E87E46E62DBFB37A7'
@@ -35,9 +35,9 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
         let userID = process.env.PADEL_USERID;
 
         let month: number = 2;
-        let date: number = 4;
-        let time: number = 15;
-        let mins: number = 46;
+        let date: number = 9;
+        let time: number = 16;
+        let mins: number = 59;
         let secs: number = 0;
 
         await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);
@@ -46,7 +46,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
 
         let actionURL: string = `https://api.spond.com/core/v1/sponds/${eventID}/responses/${userID}`
 
-        let maxRetries = 65;
+        let maxRetries = 68;
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
             const action_response = await request.put(actionURL, {
                 data: { "accepted": true },

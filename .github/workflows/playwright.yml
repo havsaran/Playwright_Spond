@@ -8,10 +8,6 @@ on:
   push:
     branches:
       - master  # Trigger the workflow on push to the master branch
-  pull_request:
-    branches:
-      - master  # Trigger the workflow on pull request to the master branch
-
 jobs:
   test:
     runs-on: ubuntu-latest  # Use an Ubuntu runner for your CI
@@ -48,12 +44,12 @@ jobs:
         run: |          
           DAY_OF_WEEK=$(date +%u)
           
-          if [ "$DAY_OF_WEEK" -eq 3 ]; then
+          if [ "$DAY_OF_WEEK" -eq 6 ]; then
             
             echo "Running Test 1 (Saturday)"
             npx playwright test spondTue.spec.ts
 
-          elif [ "$DAY_OF_WEEK" -eq 2 ]; then
+          elif [ "$DAY_OF_WEEK" -eq 7 ]; then
             
             echo "Running Test 2 (Sunday)"
             npx playwright test spondWed.spec.ts
