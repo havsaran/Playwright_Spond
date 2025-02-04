@@ -20,6 +20,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
         token = `Bearer ${login_responseBody?.loginToken}`;
 
         console.log(JSON.stringify(await login_response.json(), null, 2))
+        console.log(`current time:  /n ${new Date()} /n`)
     })
 
 
