@@ -29,7 +29,7 @@ jobs:
 
       # Step 4: Set the secret 'password' as an environment variable
       - name: Set up password secret as environment variable
-        run: echo "password=${{ secrets.PASSWORD }}" >> $GITHUB_ENV
+        run: echo "password=${{ secrets.PASSWORD}}" >> $GITHUB_ENV
 
       # Step 5: Run your Playwright tests or application (this will use process.env.password in your code)
       - name: Run Playwright tests
