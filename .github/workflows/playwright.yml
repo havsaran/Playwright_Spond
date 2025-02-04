@@ -1,0 +1,36 @@
+name: Run Playwright Tests with Secret Password
+
+on:
+  push:
+    branches:
+      - master  # Trigger the workflow on push to the master branch
+  pull_request:
+    branches:
+      - master  # Trigger the workflow on pull request to the master branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use an Ubuntu runner for your CI
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (e.g., version 16)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      # Step 3: Install project dependencies (make sure you have package.json with dependencies listed)
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Set the secret 'password' as an environment variable
+      - name: Set up password secret as environment variable
+        run: echo "password=${{ secrets.password }}" >> $GITHUB_ENV
+
+      # Step 5: Run your Playwright tests or application (this will use process.env.password in your code)
+      - name: Run Playwright tests
+        run: npx playwright test
