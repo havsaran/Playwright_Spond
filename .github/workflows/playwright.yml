@@ -1,6 +1,10 @@
 name: Run Playwright Tests with Secret Password
 
 on:
+  schedule:
+    - cron: '58 16 * * 6'  # Run every Saturday at 16:58 UTC
+    - cron: '58 16 * * 0'    # Run every Sunday at midnight UTC
+
   push:
     branches:
       - master  # Trigger the workflow on push to the master branch
@@ -39,6 +43,21 @@ jobs:
           echo "PASS=${{secrets.PASS}}" >> $GITHUB_ENV
           echo "PADEL_USERID=${{ secrets.PADEL_USERID}}" >> $GITHUB_ENV
 
-      # Step 5: Run your Playwright tests or application (this will use process.env.password in your code)
-      - name: Run Playwright tests
-        run: npx playwright test
+      # Step 5: Run conditional Playwright tests based on the day of the week
+      - name: Run Playwright tests based on the day
+        run: |          
+          DAY_OF_WEEK=$(date +%u)
+          
+          if [ "$DAY_OF_WEEK" -eq 6 ]; then
+            
+            echo "Running Test 1 (Saturday)"
+            npx playwright test spondTue.spec.ts
+
+          elif [ "$DAY_OF_WEEK" -eq 7 ]; then
+            
+            echo "Running Test 2 (Sunday)"
+            npx playwright test spondWed.spec.ts
+          else
+           
+            echo "Today is neither Saturday nor Sunday. Skipping tests."
+          fi

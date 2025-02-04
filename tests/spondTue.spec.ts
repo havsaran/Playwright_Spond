@@ -1,4 +1,4 @@
-import { test,expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
@@ -9,15 +9,10 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     let token: string;
 
     test.beforeAll('Login', async ({ request }) => {
-        let email_ID = process.env.EMAIL
-        let pass = process.env.PASS
-        
-        console.log(`env data is : ${email_ID && pass}`)
-
         const login_response = await request.post('https://api.spond.com/core/v1/login', {
             data: {
-                email: email_ID,
-                password: pass
+                email: process.env.EMAIL,
+                password: process.env.PASS
             }
         })
         expect(login_response.status()).toEqual(200)
@@ -29,23 +24,23 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
         console.log(`current time:  /n ${new Date()} /n`)
     })
 
+    test('TestCase 1: padel_Tuesday', async ({ request }) => {
+        test.setTimeout(150_000);
 
-    test('TestCase 1: Padel- ', async ({ request }) => {
-        test.setTimeout(30_000);
-
-        let feb05_event = '27954C11843B413582B5FD2BC4BCF674'
+        let feb11_event = 'D3B3823AF7B34009B8FD7CA708CC3082';
+        let feb12_event = '58EB4E827752489E87E46E62DBFB37A7'
 
         let month: number = 2;
-        let date: number = 4;
-        let time: number = 13;
-        let mins: number = 8;
+        let date: number = 8;
+        let time: number = 16;
+        let mins: number = 59;
         let secs: number = 0;
 
         await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);
 
         console.log('Date and time matched! Running the test...');
 
-        let eventID: string = feb05_event;
+        let eventID: string = feb11_event;
 
         //   userid padel
         let userID = process.env.PADEL_USERID;
@@ -81,12 +76,6 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
 
 
     });
-
-    // test('TestCase 2-dummy', async ({request}) => {
-    //     console.log(`TestCase 2-dummy is running : /n`)
-    //     console.log(`The time is: /n ${new Date()} /n`)
-
-    // })
 })
 
 
