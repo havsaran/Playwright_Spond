@@ -23,7 +23,12 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install project dependencies (make sure you have package.json with dependencies listed)
+       # Step 2.1: Set the timezone to your local timezone (GMT+1)
+      - name: Set timezone to GMT+1
+        run: |
+         sudo timedatectl set-timezone Europe/Brussels
+      
+       # Step 3: Install project dependencies (make sure you have package.json with dependencies listed)
       - name: Install dependencies
         run: npm install
 
@@ -31,7 +36,7 @@ jobs:
       - name: Set up password secret as environment variable
         run: |
           echo "EMAIL=${{ secrets.EMAIL}}" >> $GITHUB_ENV     
-          echo "PASSWORD=${{ secrets.PASSWORD}}" >> $GITHUB_ENV
+          echo "PASSWORD=${{ secrets.PASS}}" >> $GITHUB_ENV
           echo "PADEL_USERID=${{ secrets.PADEL_USERID}}" >> $GITHUB_ENV
 
       # Step 5: Run your Playwright tests or application (this will use process.env.password in your code)

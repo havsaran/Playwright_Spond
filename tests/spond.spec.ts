@@ -7,7 +7,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
 
     test.beforeAll('Login', async ({ request }) => {
         let email_ID = process.env.EMAIL
-        let pass = process.env.PASSWORD
+        let pass = process.env.PASS
 
         const login_response = await request.post('https://api.spond.com/core/v1/login', {
             data: {
