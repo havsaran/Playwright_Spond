@@ -10,7 +10,8 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
         const login_response = await request.post('https://api.spond.com/core/v1/login', {
             data: {
                 email: User.email,
-                password: User.password
+                //password: User.password
+                password: process.env.password
             }
         })
 
