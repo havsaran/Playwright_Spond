@@ -48,12 +48,12 @@ jobs:
         run: |          
           DAY_OF_WEEK=$(date +%u)
           
-          if [ "$DAY_OF_WEEK" -eq 2 ]; then
+          if [ "$DAY_OF_WEEK" -eq 3 ]; then
             
             echo "Running Test 1 (Saturday)"
             npx playwright test spondTue.spec.ts
 
-          elif [ "$DAY_OF_WEEK" -eq 3 ]; then
+          elif [ "$DAY_OF_WEEK" -eq 2 ]; then
             
             echo "Running Test 2 (Sunday)"
             npx playwright test spondWed.spec.ts
