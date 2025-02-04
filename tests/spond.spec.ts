@@ -1,5 +1,8 @@
-import { test } from '@playwright/test';
-import * as fs from 'fs';
+import { test,expect } from '@playwright/test';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Spond Event Registeration
 test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
@@ -8,6 +11,8 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     test.beforeAll('Login', async ({ request }) => {
         let email_ID = process.env.EMAIL
         let pass = process.env.PASS
+        
+        console.log(`env data is : ${email_ID && pass}`)
 
         const login_response = await request.post('https://api.spond.com/core/v1/login', {
             data: {
@@ -15,6 +20,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
                 password: pass
             }
         })
+        expect(login_response.status()).toEqual(200)
 
         let login_responseBody = await login_response.json()
         token = `Bearer ${login_responseBody?.loginToken}`;
