@@ -1,17 +1,18 @@
 import { test } from '@playwright/test';
-import User from '../user.json'
+import * as fs from 'fs';
 
 // Spond Event Registeration
 test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     let token: string;
 
-    test.beforeEach('Login', async ({ request }) => {
+    test.beforeAll('Login', async ({ request }) => {
+        let email_ID = process.env.EMAIL
+        let pass = process.env.PASSWORD
 
         const login_response = await request.post('https://api.spond.com/core/v1/login', {
             data: {
-                email: User.email,
-                //password: User.password
-                password: process.env.password
+                email: email_ID,
+                password: pass
             }
         })
 
@@ -22,34 +23,29 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     })
 
 
-    test.skip('TestCase 1: Padel- ', async ({ request }) => {
-        test.setTimeout(180_000);
+    test('TestCase 1: Padel- ', async ({ request }) => {
+        test.setTimeout(30_000);
 
-        let feb04_event = '92D27B6C6B274202944410790E441BFA'
         let feb05_event = '27954C11843B413582B5FD2BC4BCF674'
-        let gameID_Biginner = '26014AD70AA6413796C2750E60E210A5'
 
         let month: number = 2;
-        let date: number = 2;
-        let time: number = 16;
-        let mins: number = 59;
-        let secs: number = 55;
+        let date: number = 4;
+        let time: number = 13;
+        let mins: number = 8;
+        let secs: number = 0;
 
-        await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 100);
+        await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);
 
         console.log('Date and time matched! Running the test...');
 
         let eventID: string = feb05_event;
 
         //   userid padel
-        let userID: string = 'F311B5174498469391A82951039D6421';
-
-        //userid Bergen vest
-        // let userID: string = '5BBDAD8114384676937242897F2A38D7'
+        let userID = process.env.PADEL_USERID;
 
         let actionURL: string = `https://api.spond.com/core/v1/sponds/${eventID}/responses/${userID}`
 
-        let maxRetries = 20;
+        let maxRetries = 65;
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
             const action_response = await request.put(actionURL, {
                 data: { "accepted": true },
@@ -79,10 +75,11 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
 
     });
 
-    test('TestCase 2-dummy', async ({request}) => {
-        console.log(`The time is: /n ${new Date()} /n`)
+    // test('TestCase 2-dummy', async ({request}) => {
+    //     console.log(`TestCase 2-dummy is running : /n`)
+    //     console.log(`The time is: /n ${new Date()} /n`)
 
-    })
+    // })
 })
 
 
