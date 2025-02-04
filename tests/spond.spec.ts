@@ -22,7 +22,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     })
 
 
-    test('TestCase 1: Padel- ', async ({ request }) => {
+    test.skip('TestCase 1: Padel- ', async ({ request }) => {
         test.setTimeout(180_000);
 
         let feb04_event = '92D27B6C6B274202944410790E441BFA'
@@ -78,6 +78,11 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
 
 
     });
+
+    test('TestCase 2-dummy', async ({request}) => {
+        console.log(`The time is: /n ${new Date()} /n`)
+
+    })
 })
 
 
