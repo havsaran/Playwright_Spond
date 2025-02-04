@@ -31,9 +31,9 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
         let feb12_event = '58EB4E827752489E87E46E62DBFB37A7'
 
         let month: number = 2;
-        let date: number = 8;
-        let time: number = 16;
-        let mins: number = 59;
+        let date: number = 4;
+        let time: number = 15;
+        let mins: number = 34;
         let secs: number = 0;
 
         await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);

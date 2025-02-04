@@ -2,8 +2,8 @@ name: Run Playwright Tests with Secret Password
 
 on:
   schedule:
-    - cron: '58 16 * * 6'  # Run every Saturday at 16:58 UTC
-    - cron: '58 16 * * 0'    # Run every Sunday at midnight UTC
+    - cron: '58 15 * * 6'  # Run every Saturday at 16:58 UTC
+    - cron: '58 15 * * 0'    # Run every Sunday at midnight UTC
 
   push:
     branches:
@@ -48,12 +48,12 @@ jobs:
         run: |          
           DAY_OF_WEEK=$(date +%u)
           
-          if [ "$DAY_OF_WEEK" -eq 6 ]; then
+          if [ "$DAY_OF_WEEK" -eq 2 ]; then
             
             echo "Running Test 1 (Saturday)"
             npx playwright test spondTue.spec.ts
 
-          elif [ "$DAY_OF_WEEK" -eq 7 ]; then
+          elif [ "$DAY_OF_WEEK" -eq 3 ]; then
             
             echo "Running Test 2 (Sunday)"
             npx playwright test spondWed.spec.ts
