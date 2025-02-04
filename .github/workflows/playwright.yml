@@ -36,7 +36,7 @@ jobs:
       - name: Set up password secret as environment variable
         run: |
           echo "EMAIL=${{ secrets.EMAIL}}" >> $GITHUB_ENV     
-          echo "PASSWORD=${{ secrets.PASS}}" >> $GITHUB_ENV
+          echo "PASS=${{secrets.PASS}}" >> $GITHUB_ENV
           echo "PADEL_USERID=${{ secrets.PADEL_USERID}}" >> $GITHUB_ENV
 
       # Step 5: Run your Playwright tests or application (this will use process.env.password in your code)
