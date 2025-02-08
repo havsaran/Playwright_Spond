@@ -2,12 +2,12 @@ name: Run Playwright Tests with Secret Password
 
 on:
   schedule:
-    - cron: '58 15 * * 6'  # Run every Saturday at 16:58 UTC
-    - cron: '58 15 * * 0'    # Run every Sunday at midnight UTC
+    - cron: '20 16 * * 6'  # Run every Saturday 
+    - cron: '58 15 * * 0'    # Run every Sunday
 
-  push:
-    branches:
-      - master  # Trigger the workflow on push to the master branch
+ # push:
+  #  branches:
+  #    - master  # Trigger the workflow on push to the master branch
 jobs:
   test:
     runs-on: ubuntu-latest  # Use an Ubuntu runner for your CI
