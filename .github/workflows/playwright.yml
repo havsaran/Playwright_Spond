@@ -2,8 +2,9 @@ name: Run Playwright Tests with Secret Password
 
 on:
   schedule:
-    - cron: '20 16 * * 6'  # Run every Saturday 
+    - cron: '40 16 * * 6'  # Run every Saturday 
     - cron: '58 15 * * 0'    # Run every Sunday
+  workflow_dispatch:  # Manually trigger the workflow for testing
 
  # push:
   #  branches:
