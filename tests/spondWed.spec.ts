@@ -63,7 +63,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
             }
             else {
                 console.log(`Res status: ${action_response.status()}/n ResBody: ${reponseBody}`)
-                await delay(1000); // waiting 1 sec
+                await delay(2500); // waiting 1 sec
                 console.log(` attempt: ${attempt}-time after 1 min delaying req:  /n ${new Date()} /n`)
             }
         }
