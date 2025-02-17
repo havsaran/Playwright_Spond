@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
+import eventDetails from '../eventDetails.json'
 
 // Load environment variables from .env file
 dotenv.config();
@@ -28,15 +29,15 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
         test.setTimeout(180_000);
 
       
-        let eventID: string = 'BA788464050B463498A1125716E86193';
+        let eventID: string = '0FD6AC8F62EA4EE188F3456FE1AF4CF6';
         //   userid padel
         let userID = process.env.PADEL_USERID;
 
         let month: number = 2;
-        let date: number = 15 ;
-        let time: number = 16;
-        let mins: number = 59;
-        let secs: number = 0;
+        let date: number = 22;
+        let time: number = 17;
+        let mins: number = 0;
+        let secs: number = 4;
 
         await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);
 

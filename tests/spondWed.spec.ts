@@ -27,15 +27,15 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
         test.setTimeout(180_000);      
 
-        let eventID: string = 'D2F2E0539741448BB9C530B19F9E68EC';
+        let eventID: string = 'F61FA073CCB84930B8802D572AF0D28A';
         //   userid padel
         let userID = process.env.PADEL_USERID;
 
         let month: number = 2;
-        let date: number = 16;
-        let time: number = 16;
-        let mins: number = 59;
-        let secs: number = 0;
+        let date: number = 23;
+        let time: number = 17;
+        let mins: number = 0;
+        let secs: number = 2;
 
         await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);
 
@@ -63,7 +63,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
             }
             else {
                 console.log(`Res status: ${action_response.status()}/n ResBody: ${reponseBody}`)
-                await delay(2500); // waiting 1 sec
+                await delay(1000); // waiting 1 sec
                 console.log(` attempt: ${attempt}-time after 1 min delaying req:  /n ${new Date()} /n`)
             }
         }
