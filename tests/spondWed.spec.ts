@@ -27,7 +27,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
         test.setTimeout(180_000);      
 
-        let eventID: string = 'F61FA073CCB84930B8802D572AF0D28A';
+        let eventID: string = '4749CE134AC14BE6935F389D276664DD';
         //   userid padel
         let userID = process.env.PADEL_USERID;
 
