@@ -25,21 +25,20 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     })
 
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
-        test.setTimeout(180_000);      
+        test.setTimeout(180_000);
 
-        let eventID: string = '4749CE134AC14BE6935F389D276664DD';
-        //   userid padel
+        let eventID: string = 'FE8D4CFB2C7E47F6BD6C044B327066F1'; //   userid padel
         let userID = process.env.PADEL_USERID;
 
-        let month: number = 2;
-        let date: number = 23;
-        let time: number = 17;
+        let month: number = 1;
+        let date: number = 25;
+        let time: number = 16;
         let mins: number = 0;
         let secs: number = 2;
 
-        await waitForSpecificDateAndTime(2025, month, date, time, mins, secs, 50);
+        await waitForSpecificDateAndTime(2026, month, date, time, mins, secs, 50);
 
-        console.log('Date and time matched! Running the test...');     
+        console.log('Date and time matched! Running the test...');
 
         let actionURL: string = `https://api.spond.com/core/v1/sponds/${eventID}/responses/${userID}`
 
