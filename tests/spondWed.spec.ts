@@ -25,7 +25,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     })
 
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
-        test.setTimeout(600_000);
+        test.setTimeout(300_000);
 
         let eventID: string = '538CFD696E2D40BF8E7F75955D073943'; //   userid padel
         let userID = process.env.PADEL_USERID;
@@ -42,7 +42,7 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
 
         let actionURL: string = `https://api.spond.com/core/v1/sponds/${eventID}/responses/${userID}`
 
-        let maxRetries = 68;
+        let maxRetries = 70;
         for (let attempt = 1; attempt <= maxRetries; attempt++) {
             const action_response = await request.put(actionURL, {
                 data: { "accepted": true },

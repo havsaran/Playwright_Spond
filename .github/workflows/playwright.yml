@@ -2,8 +2,8 @@ name: Run Playwright Tests with Secret Password
 
 on:
   schedule:
-   # - cron: '58 15 * * 6'  # Run every Saturday 
-    - cron: '54 15 * * 0'    # Run every Sunday
+   # - cron: '30 15 * * 6'  # Run every Saturday 
+    - cron: '30 15 * * 0'    # Run every Sunday
   workflow_dispatch:  # Manually trigger the workflow for testing
 
  # push:
@@ -39,6 +39,23 @@ jobs:
           echo "EMAIL=${{ secrets.EMAIL}}" >> $GITHUB_ENV     
           echo "PASS=${{secrets.PASS}}" >> $GITHUB_ENV
           echo "PADEL_USERID=${{ secrets.PADEL_USERID}}" >> $GITHUB_ENV
+
+      # Step 4.1: Wait until 16:00 GMT+1
+      - name: Wait until 15:59 GMT+1
+        run: |
+          TARGET_HOUR=15
+          TARGET_MINUTE=59
+          while true; do
+            NOW_HOUR=$(date +%H)
+            NOW_MINUTE=$(date +%M)
+            if [ "$NOW_HOUR" -gt "$TARGET_HOUR" ] || { [ "$NOW_HOUR" -eq "$TARGET_HOUR" ] && [ "$NOW_MINUTE" -ge "$TARGET_MINUTE" ]; }; then
+              echo "It's now ${NOW_HOUR}:${NOW_MINUTE}, continuing..."
+              break
+            else
+              echo "Waiting for 15:59. Current time: ${NOW_HOUR}:${NOW_MINUTE}"
+              sleep 30
+            fi
+          done
 
       # Step 5: Run conditional Playwright tests based on the day of the week
       - name: Run Playwright tests based on the day
