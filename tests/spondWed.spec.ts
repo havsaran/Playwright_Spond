@@ -25,16 +25,16 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     })
 
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
-        test.setTimeout(180_000);
+        test.setTimeout(600_000);
 
-        let eventID: string = '391F67C508FA48BE9A2E6C9B5AE4716A'; //   userid padel
+        let eventID: string = '538CFD696E2D40BF8E7F75955D073943'; //   userid padel
         let userID = process.env.PADEL_USERID;
 
-        let month: number = 1;
-        let date: number = 25;
+        let month: number = 2;
+        let date: number = 8;
         let time: number = 16;
         let mins: number = 0;
-        let secs: number = 2;
+        let secs: number = 0;
 
         await waitForSpecificDateAndTime(2026, month, date, time, mins, secs, 50);
 
@@ -98,7 +98,7 @@ async function waitForSpecificDateAndTime(
                 clearInterval(interval);
                 resolve();
             }
-        }, 100); // Check every 100 milliseconds
+        }, 1000); // Check every 1 seconds
     });
 }
 
