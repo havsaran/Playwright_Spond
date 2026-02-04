@@ -54,7 +54,7 @@ jobs:
           echo "Runner start / wait step initiated at: $NOW"
 
           # Calculate seconds until 15:59
-          TARGET_SEC=$(date -d '13:45:00' +%s)
+          TARGET_SEC=$(date -d '15:59:00' +%s)
           NOW_SEC=$(date +%s)
           DIFF=$(( TARGET_SEC - NOW_SEC ))
 
