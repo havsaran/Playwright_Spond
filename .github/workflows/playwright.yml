@@ -47,26 +47,27 @@ jobs:
           echo "PASS=${{secrets.PASS}}" >> $GITHUB_ENV
           echo "PADEL_USERID=${{ secrets.PADEL_USERID}}" >> $GITHUB_ENV
 
-      # Step 4.1: Wait until 15:59 GMT+1
+      # Step 4.1: Wait until 15:59 GMT+1 (single sleep)
       - name: Wait until 15:59 GMT+1
         run: |
           NOW=$(date '+%Y-%m-%d %H:%M:%S %Z')
-          echo "Starting wait step at: $NOW"
+          echo "Runner start / wait step initiated at: $NOW"
 
-          TARGET_HOUR=15
-          TARGET_MINUTE=59
-          while true; do
-            NOW_HOUR=$(date +%H)
-            NOW_MINUTE=$(date +%M)
-            if [ "$NOW_HOUR" -gt "$TARGET_HOUR" ] || { [ "$NOW_HOUR" -eq "$TARGET_HOUR" ] && [ "$NOW_MINUTE" -ge "$TARGET_MINUTE" ]; }; then
-              echo "It's now ${NOW_HOUR}:${NOW_MINUTE}, continuing..."
-              break
-            else
-              echo "Waiting for 15:59. Current time: ${NOW_HOUR}:${NOW_MINUTE}"
-              sleep 30
-            fi
-          done
+          # Calculate seconds until 15:59
+          TARGET_SEC=$(date -d '13:45:00' +%s)
+          NOW_SEC=$(date +%s)
+          DIFF=$(( TARGET_SEC - NOW_SEC ))
 
+          if [ "$DIFF" -gt 0 ]; then
+            echo "Sleeping for $DIFF seconds until 15:59..."
+            sleep $DIFF
+          else
+            echo "Already past 15:59, continuing immediately..."
+          fi
+
+          NOW=$(date '+%Y-%m-%d %H:%M:%S %Z')
+          echo "Wait finished at: $NOW"     
+     
       # Step 5: Run conditional Playwright tests based on the day of the week
       - name: Run Playwright tests based on the day
         run: |          
