@@ -3,7 +3,7 @@ name: Run Playwright Tests with Secret Password
 on:
   schedule:
    # - cron: '30 15 * * 6'  # Run every Saturday 
-    - cron: '20 14 * * 0'    # Run every Sunday- UTC time 
+    - cron: '59 13 * * 0'    # Run every Sunday- UTC time 
   workflow_dispatch:  # Manually trigger the workflow for testing
 
  # push:
@@ -59,7 +59,7 @@ jobs:
           DIFF=$(( TARGET_SEC - NOW_SEC ))
 
           if [ "$DIFF" -gt 0 ]; then
-            echo "Sleeping for $DIFF seconds until 15:59..."
+            echo "Sleeping for $DIFF seconds; Until 15:59..."
             sleep $DIFF
           else
             echo "Already past 15:59, continuing immediately..."

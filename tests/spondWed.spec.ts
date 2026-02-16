@@ -27,12 +27,12 @@ test.describe('Spond Event Registeration', { tag: '@Padel' }, () => {
     test('TestCase 1: padel_Wednesday', async ({ request }) => {
         test.setTimeout(300_000);
 
-        let eventID: string = '356DCB1716864170BBF73963582E3180'; //   userid padel
+        let eventID: string = 'BB98C3E4A95A489694D1FC921EEB0F58'; //   userid padel
         let userID = process.env.PADEL_USERID;
 
         // Below Date date and time of notification date. -sunday - 3 days before actual event
         let month: number = 2;
-        let date: number = 15;
+        let date: number = 22;
         let time: number = 16;
         let mins: number = 0;
         let secs: number = 3;
